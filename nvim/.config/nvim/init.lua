@@ -1,29 +1,31 @@
--- Setting leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 require("config.lazy")
-require "keymaps"
-require("keymaps").setup()
-require "options"
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
+require("config.options")
+require("config.keymaps")
 
--- vim.cmd("colorscheme cyberdream")
-require("mason").setup()
-require("mason-lspconfig").setup {
-  automatic_installation = true,
-}
+vim.g.mapleader = " "
+vim.cmd [[colorscheme moonfly]]
 
--- Auto-format on save using the active LSP
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),
-  callback = function(args)
-    -- Protect against LSPs that don’t support formatting
-    local clients = vim.lsp.get_clients({ bufnr = args.buf })
-    for _, client in ipairs(clients) do
-      if client.supports_method("textDocument/formatting") then
-        vim.lsp.buf.format({ bufnr = args.buf, async = false })
-        return
-      end
-    end
-  end,
+-- Autocmd to start treesitter 
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+        -- Get the language for the current buffer's filetype
+        local lang = vim.treesitter.language.get_lang(args.match)
+        -- If no language or no highlight queries are found, return
+        if not lang or not vim.treesitter.query.get(lang, "highlights") then
+            return
+        end
+        -- Enable treesitter for the current buffer
+        vim.treesitter.start()
+    end,
 })
+
+-- Autocommand to enable spellcheck for Markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown", -- Triggers for files identified as 'markdown'
+  callback = function()
+    vim.opt_local.spell = true      -- Enable spell check locally
+    vim.opt_local.spelllang = "en_us" -- Set language to US English
+  end,
+  desc = "Enable spellcheck for markdown files",
+})
+

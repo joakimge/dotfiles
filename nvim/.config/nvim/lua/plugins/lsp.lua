@@ -1,36 +1,67 @@
-return -- lsp.lua or wherever
-{
-  "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = { "hrsh7th/cmp-nvim-lsp" },
-  config = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- lua/plugins/lsp.lua
+return {
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    config = function()
+      require("mason").setup()
 
-    local on_attach = function(client, bufnr)
-      -- your keymaps etc
-    end
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "lua_ls",
+        },
+      })
 
-    -- Global defaults for *all* servers
-    vim.lsp.config("*", {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+      vim.diagnostic.config({
+        virtual_text = true,
+      })
 
-    -- List the servers you want
-    local servers = {
-      -- add more…
-    }
+      -- LSP Keymaps
+      local function lsp_on_attach(_, bufnr)
+        local map = function(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+        end
 
-    for _, server in ipairs(servers) do
-      -- extra per-server settings can go in the 2nd arg
-      vim.lsp.config(server, {})
-      vim.lsp.enable(server)
-    end
+        map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+        map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+        map("n", "gr", vim.lsp.buf.references, "References")
+        map("n", "K",  vim.lsp.buf.hover, "Hover")
+        map("n", "<leader>d", ":lua vim.diagnostic.open_float()<CR>", "Show diagnostic under current line")
+        map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+        map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+      end
 
-    vim.diagnostic.config({
-      virtual_text = true,
-      float = { border = "rounded" },
-      severity_sort = true,
-    })
-  end,
+
+
+      -- Global defaults
+      vim.lsp.config["*"] = {
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+        on_attach = lsp_on_attach,
+      }
+
+      -- Lua
+      vim.lsp.config.lua_ls = {
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+          },
+        },
+      }
+
+      -- Enable everything Mason installs
+      for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
+        vim.lsp.enable(server)
+      end
+    end,
+  },
 }
+
