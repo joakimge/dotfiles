@@ -24,14 +24,7 @@ return {
         local map = function(mode, lhs, rhs, desc)
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
         end
-
-        map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-        map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-        map("n", "gr", vim.lsp.buf.references, "References")
-        map("n", "K",  vim.lsp.buf.hover, "Hover")
-        map("n", "<leader>d", ":lua vim.diagnostic.open_float()<CR>", "Show diagnostic under current line")
-        map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-        map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+        map('i', '<C-s>', vim.lsp.buf.signature_help, "Signature help")
       end
 
 

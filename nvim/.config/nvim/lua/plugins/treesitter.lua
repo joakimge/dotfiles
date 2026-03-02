@@ -16,8 +16,13 @@ return {
       "c",
       "java",
       "vim",
+      "go",
       "javascript",
+      "typescript",
+      "tsx",
+      "jsx",
       "html",
+      "rust",
     })
   end,
 }

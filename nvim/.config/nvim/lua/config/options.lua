@@ -15,8 +15,8 @@ set.undofile = true
 set.autoindent = true
 set.copyindent = true
 set.updatetime = 400
-set.timeoutlen = 300
 set.signcolumn = 'yes'
+set.colorcolumn = '100'
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -26,6 +26,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = highlight_group,
     pattern = "*",
 })
-
-
-

@@ -45,7 +45,13 @@ return {
     keys = {
         { "<leader>sf", function() Snacks.picker.files() end, desc = "Find files from cwd"},
         { "<leader>sg", function() Snacks.picker.grep() end, desc = "Search with grep"},
+        {"<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
         { "<leader><leader>", function() Snacks.picker.buffers() end, desc = "Search in buffers"},
         { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "View keymaps"},
+        { "<leader>q", function() Snacks.picker.diagnostics() end, desc = "View keymaps"},
+        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Go to definition"},
+        { "<leader>gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        { "gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
     }
+
 }
