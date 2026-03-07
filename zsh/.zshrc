@@ -1,7 +1,6 @@
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-export PATH="~/odin/Odin:$PATH"
 # Download and install zinit if it's not already installed
 if [ ! -d "${ZINIT_HOME}" ]; then
   mkdir -p "$(dirname "${ZINIT_HOME}")"
@@ -12,7 +11,6 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Shell integrations
-eval "$(starship init zsh)" # Starship prompt
 eval "$(fzf --zsh)" 
 eval "$(zoxide init --cmd cd zsh)" # zoxide
 
@@ -53,6 +51,11 @@ alias n='nvim'
 alias y='yazi'
 alias wifi='nmcli dev wifi list'
 alias l='ls -al'
+alias up='sudo nixos-rebuild switch'
+alias conf='sudo nvim /etc/nixos/configuration.nix'
 wific() {
   sudo nmcli dev wifi connect "$1" --ask
+}
+template(){ 
+    nix flake init -t ~/dev/dev-templates#"$1" && direnv allow
 }
