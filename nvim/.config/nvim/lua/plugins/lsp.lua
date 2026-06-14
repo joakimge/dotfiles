@@ -42,7 +42,14 @@ return {
             local servers = {
                 "lua_ls",
                 "jdtls",
+                "dartls",
+                "nil_ls",
+                "tinymist",
+                "lemminx",
                 "gopls",
+                "zls",
+                "ts_ls",
+                "cssls",
                 -- add more here, e.g. "nil_ls", "pyright", "rust_analyzer", ...
             }
 

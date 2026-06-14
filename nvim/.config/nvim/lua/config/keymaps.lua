@@ -50,3 +50,4 @@ set('n', '<C-l>', '<C-w>l', opts)
 -- Open nvim config
 set('n', '<leader>nc', ':Oil ~/.config/nvim<CR>', opts)
 
+

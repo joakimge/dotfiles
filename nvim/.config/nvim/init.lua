@@ -2,7 +2,11 @@ require("config.lazy")
 require("config.options")
 require("config.keymaps")
 
-vim.cmd [[colorscheme cyberdream]]
+-- vim.cmd.colorscheme('nordic')
+-- vim.cmd.colorscheme('moonfly')
+-- vim.cmd.colorscheme('cyberdream')
+vim.cmd.colorscheme('sonokai')
+-- vim.cmd.colorscheme('monokai-pro')
 vim.g.mapleader = " "
 vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.splitright = true

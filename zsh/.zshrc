@@ -1,11 +1,34 @@
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+export PATH="/run/wrappers/bin:$HOME/.local/bin:$PATH"
+export ZSH_COMPDUMP="$HOME/.cache/zsh/"   
+
 # Download and install zinit if it's not already installed
 if [ ! -d "${ZINIT_HOME}" ]; then
   mkdir -p "$(dirname "${ZINIT_HOME}")"
   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
+
+autoload -Uz vcs_info add-zsh-hook
+autoload -U colors && colors
+
+# git info via zsh builtin
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats '-[%F{yellow}%b%f]'
+zstyle ':vcs_info:git:*' actionformats '-[%F{yellow}%b|%a%f]'
+
+add-zsh-hook precmd vcs_info
+setopt PROMPT_SUBST
+
+nix_prompt() {
+  [[ -n "$IN_NIX_SHELL" ]] || return
+  local shell_name="${NIX_SHELL_NAME:-nix-shell}"
+  print -Pn -- "-[%F{cyan}nix: ${shell_name}%f]"
+}
+
+PROMPT='[%F{magenta}%n%f]-[%F{green}%m%f]-[%F{white}%~%f]-[%F{244}zsh%f]${vcs_info_msg_0_}$(nix_prompt)
+> '
 
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
@@ -21,7 +44,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Load completion system
-autoload -U compinit && compinit
+autoload -U compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION && compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # Keybindings
 bindkey '^N' history-search-forward
@@ -53,6 +76,8 @@ alias wifi='nmcli dev wifi list'
 alias l='ls -al'
 alias up='sudo nixos-rebuild switch'
 alias conf='sudo nvim /etc/nixos/configuration.nix'
+alias xbox='swaymsg output DP-9 toggle'
+alias server='swaymsg output DP-8 toggle'
 wific() {
   sudo nmcli dev wifi connect "$1" --ask
 }

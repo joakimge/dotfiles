@@ -14,7 +14,7 @@ return {
         local wanted = {
             "lua", "c", "java", "vim", "go",
             "javascript", "typescript", "tsx",
-            "html",
+            "html", "typst", "zig", "css",
         }
 
         -- Only install missing parsers to avoid re-downloading every startup.
