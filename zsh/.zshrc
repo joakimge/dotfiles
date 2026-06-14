@@ -82,5 +82,5 @@ wific() {
   sudo nmcli dev wifi connect "$1" --ask
 }
 template(){ 
-    nix flake init -t ~/dev/dev-templates#"$1" && direnv allow
+    nix flake init -t github:joakimge/dev-templates#"$1" && direnv allow
 }
