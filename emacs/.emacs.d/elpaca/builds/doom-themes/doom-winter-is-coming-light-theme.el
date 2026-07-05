@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/themes/themes/doom-winter-is-coming-light-theme.el

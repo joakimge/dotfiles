@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/themes/extensions/doom-themes-ext-org.el

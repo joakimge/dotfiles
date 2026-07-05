@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/themes/themes/doom-monokai-spectrum-theme.el

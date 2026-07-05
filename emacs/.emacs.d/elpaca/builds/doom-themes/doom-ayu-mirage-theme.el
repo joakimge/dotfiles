@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/themes/themes/doom-ayu-mirage-theme.el

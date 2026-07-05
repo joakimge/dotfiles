@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/emacs-undo-fu-session/undo-fu-session.el

@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/magit/lisp/magit-commit.el

@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/consult/consult-register.el

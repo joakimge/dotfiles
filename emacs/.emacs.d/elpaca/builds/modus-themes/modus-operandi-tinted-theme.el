@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/modus-themes/modus-operandi-tinted-theme.el

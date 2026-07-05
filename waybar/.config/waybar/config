@@ -1,16 +1,17 @@
 {
   "layer": "top",
   "position": "top",
-  "margin-bottom": -10,
+  "margin-bottom": 0,
   "spacing" : 0,
   "modules-left": [
   "hyprland/workspaces",
   
   ],
 
-  "modules-center": ["clock", "custom/notification"],
+  "modules-center": ["clock",],
 
   "modules-right": [
+    "custom/notification",
     "bluetooth",
     "network",
     "pulseaudio", 
@@ -19,11 +20,11 @@
   ],
 
   "hyprland/workspaces": {
-    "format": "{name}: {icon}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    }
+//    "format": "{name}: {icon}",
+//    "format-icons": {
+//      "active": "",
+//      "default": ""
+//    }
   },
 
   "bluetooth": {
@@ -42,7 +43,7 @@
 
   "custom/notification": {
     "tooltip": true,
-    "format": "<span size='16pt'>{0} {icon}</span>",
+    "format": "<span size='12pt'>{0} {icon}</span>",
     "format-icons": {
       "notification": "󱅫",
       "none": "󰂜",

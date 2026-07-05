@@ -1,25 +1,55 @@
--- return {
---   "scottmckendry/cyberdream.nvim",
---   lazy = false,
---   priority = 1000,
---   config = function()
---     require("cyberdream").setup({
---       transparent = false,
---       -- other options as desired
---
---     })
---   end
--- }
-
 return {
-  "vague-theme/vague.nvim",
-  lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-  priority = 1000, -- make sure to load this before all the other plugins
-  config = function()
-    require("vague").setup({
-      -- optional configuration here
-      transparent = true,
-    })
-    vim.cmd("colorscheme vague")
-  end
+    {
+        'sainnhe/sonokai',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.o.termguicolors = true
+
+            vim.g.sonokai_style = "andromeda"
+
+            -- darker background
+            vim.g.sonokai_colors_override = {
+                bg_dim = { "#1f2028", "232" },
+                bg0    = { "#232530", "235" },
+                bg1    = { "#2a2d39", "236" },
+                bg2    = { "#2f3341", "236" },
+            }
+
+            -- optional: darker floating windows
+            vim.g.sonokai_float_style = "dim"
+        end
+    },
+    {
+        'AlexvZyl/nordic.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('nordic').load()
+        end,
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
+        "scottmckendry/cyberdream.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
+        "bluz71/vim-moonfly-colors",
+        name = "moonfly",
+        lazy = false,
+        priority = 1000
+    },
+    {
+        "loctvl842/monokai-pro.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("monokai-pro").setup()
+        end,
+    },
 }
