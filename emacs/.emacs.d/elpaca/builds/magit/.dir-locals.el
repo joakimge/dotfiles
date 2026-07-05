@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/magit/.dir-locals.el

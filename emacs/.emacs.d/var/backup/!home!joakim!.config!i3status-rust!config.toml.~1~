@@ -1,0 +1,32 @@
+
+[theme]
+theme = "plain"
+
+[[block]]
+block = "custom"
+command = "dunstctl count history"
+interval = 2
+format = " ! $text.pango-str() "
+[[block.click]]
+button = "left"
+cmd = "dunstctl history-pop"
+
+[[block]]
+block = "sound"
+# Scroll adjusts volume; right click toggles mute (built-in behavior)
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "battery"
+driver = "sysfs"
+device = "BAT1"
+format = " $icon $percentage "
+full_format = " $icon $percentage "
+not_charging_format = " $icon $percentage "  # many laptops report "Not charging" when full
+
+[[block]]
+block = "time"
+interval = 5
+format = " $timestamp.datetime(f:'%a %d/%m %R') "

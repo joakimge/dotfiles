@@ -1,0 +1,1 @@
+/home/joakim/.emacs.d/elpaca/sources/themes/themes/doom-flatwhite-theme.el

@@ -1,0 +1,58 @@
+;;; tools.el --- project, git, terminals -*- lexical-binding: t; -*-
+
+;; --- project.el (built-in) ---
+(use-package project
+  :ensure nil
+  :config
+  (setq project-vc-extra-root-markers '(".project"))  ; escape hatch for non-git roots
+  :general
+  (my/leader
+    "pp" '(project-switch-project :which-key "switch project")
+    "pf" '(project-find-file :which-key "find file")
+    "pb" '(consult-project-buffer :which-key "project buffers")
+    "pc" '(project-compile :which-key "compile")
+    "pk" '(project-kill-buffers :which-key "kill project buffers")
+    "pd" '(project-dired :which-key "dired at root")))
+
+(use-package transient)
+;; --- magit ---
+(use-package magit
+  :general
+  (my/leader
+    "gg" '(magit-status :which-key "status")
+    "gb" '(magit-blame-addition :which-key "blame")
+    "gl" '(magit-log-current :which-key "log")))
+
+;; --- editable grep buffers (via embark export) ---
+(use-package wgrep
+  :config (setq wgrep-auto-save-buffer t))
+;; --- vterm: real terminal ---
+(use-package vterm
+  :config
+  (setq vterm-max-scrollback 10000
+        vterm-shell (getenv "SHELL")))   ; your login shell
+
+;; Project-aware terminal: reuse one vterm per project, at its root.
+(defun my/project-vterm ()
+  "Open (or switch to) a vterm at the current project root."
+  (interactive)
+  (let* ((default-directory (or (when-let ((proj (project-current)))
+                                  (project-root proj))
+                                default-directory))
+         (name (format "*vterm: %s*"
+                       (file-name-nondirectory
+                        (directory-file-name default-directory)))))
+    (if (get-buffer name)
+        (switch-to-buffer name)
+      (vterm name))))
+
+(my/leader
+  "ot" '(my/project-vterm :which-key "terminal (project)")
+  "oT" '(vterm :which-key "terminal (here)"))
+
+;; --- forge: PRs and issues inside magit ---
+(use-package forge
+  :after magit)
+
+(provide 'tools)
+;;; tools.el ends here

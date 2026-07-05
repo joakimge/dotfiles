@@ -1,0 +1,76 @@
+;;; core-keybinds.el --- Leader keys and binding infrastructure -*- lexical-binding: t; -*-
+
+;; --- which-key: popup showing available keys under a prefix (built-in, 30) ---
+(use-package which-key
+
+  :ensure nil                       ; built-in
+  :config
+  (setq which-key-idle-delay 0.4)   ; popup delay in seconds
+  (which-key-mode 1))
+
+;; --- general.el ---
+(use-package general
+  :ensure t
+  :config
+  (general-evil-setup)              ; extra evil-aware helpers
+
+  ;; Our leader definer: SPC in normal/visual, M-SPC elsewhere (insert, emacs state).
+  (general-create-definer my/leader
+    :states '(normal visual motion)
+    :keymaps 'override               ; leader wins over mode-specific maps
+    :prefix "SPC"
+    :global-prefix "M-SPC")
+
+  ;; Local-leader for mode-specific commands (like vim's <localleader>).
+  (general-create-definer my/local-leader
+    :states '(normal visual motion)
+    :keymaps 'override
+    :prefix "SPC m"))
+
+;; Block until general is built — later modules use :general at read time.
+(elpaca-wait)
+
+;; --- The leader tree ---
+;; Structure now, best-in-class commands swapped in as later steps land.
+(my/leader
+  ;; Top-level singles
+  "SPC" '(execute-extended-command :which-key "M-x")
+  ","   '(switch-to-buffer :which-key "switch buffer")
+  "."   '(find-file :which-key "find file")
+  "e"   '(dired-jump :which-key "Dired")
+
+  ;; f — files
+  "f"  '(:ignore t :which-key "files")
+  "ff" '(find-file :which-key "find file")
+  "fr" '(recentf :which-key "recent files")
+  "fs" '(save-buffer :which-key "save")
+  "fp" '((lambda () (interactive)
+           (find-file (expand-file-name "lisp/" user-emacs-directory)))
+         :which-key "edit config")
+
+  ;; b — buffers
+  "b"  '(:ignore t :which-key "buffers")
+  "bb" '(switch-to-buffer :which-key "switch")
+  "bd" '(kill-current-buffer :which-key "kill")
+  "br" '(revert-buffer :which-key "revert")
+
+  ;; Placeholders that later steps fill:
+  "s"  '(:ignore t :which-key "search")     ; step 6 (consult)
+  "p"  '(:ignore t :which-key "project")    ; step 9
+  "g"  '(:ignore t :which-key "git")        ; step 9 (magit)
+  "c"  '(:ignore t :which-key "code")       ; step 8 (lsp actions)
+  "o"  '(:ignore t :which-key "open")       ; terminals, org, dired
+  "h"  '(:ignore t :which-key "help")
+  "q"  '(:ignore t :which-key "quit"))
+
+;; h — help (helpful-powered)
+(my/leader
+  "hf" '(helpful-callable :which-key "function")
+  "hv" '(helpful-variable :which-key "variable")
+  "hk" '(helpful-key :which-key "key")
+  "hm" '(describe-mode :which-key "mode")
+  "qq" '(save-buffers-kill-terminal :which-key "quit emacs"))
+
+
+(provide 'core-keybinds)
+;;; core-keybinds.el ends here

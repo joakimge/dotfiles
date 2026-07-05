@@ -1,0 +1,125 @@
+;;; core-completion.el --- Minibuffer completion stack -*- lexical-binding: t; -*-
+
+;; --- Vertico: vertical completion UI ---
+(use-package vertico
+  ;; :bind (:map vertico-map
+  ;;        ("C-y" . vertico-insert))     ; accept selected candidate
+  :config
+  (setq vertico-cycle t
+        vertico-count 12)
+  (vertico-mode 1))
+;; Nicer directory navigation in file prompts:
+
+;; DEL deletes whole directory components, not char-by-char.
+(use-package vertico-directory
+  :ensure nil                    ; ships inside vertico
+  :after vertico
+  :bind (:map vertico-map
+         ("RET"   . vertico-directory-enter)
+         ("DEL"   . vertico-directory-delete-char)
+         ("M-DEL" . vertico-directory-delete-word)))
+
+;; --- Orderless: type "def fun" to match "my-function-definition" ---
+(use-package orderless
+  :config
+  (setq completion-styles '(orderless basic)
+        ;; files still get partial-path completion (/u/l/b → /usr/local/bin)
+        completion-category-overrides
+        '((file (styles basic partial-completion)))))
+
+;; --- Marginalia: rich annotations in the margin ---
+(use-package marginalia
+  :config (marginalia-mode 1))
+
+;; --- Consult: the actual commands (Telescope-equivalents) ---
+(use-package consult
+  :config
+  ;; Preview buffers/files as you move through candidates.
+  (setq consult-preview-key 'any)
+  ;; consult-buffer replaces switch-to-buffer everywhere we bound it.
+  :general
+  (my/leader
+    ","  '(consult-buffer :which-key "switch buffer")
+    "bb" '(consult-buffer :which-key "switch")
+    "fr" '(consult-recent-file :which-key "recent files")
+    ;; s — search, filling the step-5 placeholder
+    "ss" '(consult-line :which-key "search buffer")
+    "sg" '(consult-ripgrep :which-key "grep project")
+    "si" '(consult-imenu :which-key "symbols (imenu)")
+    "so" '(consult-outline :which-key "outline")
+    "sm" '(consult-mark :which-key "marks")))
+
+;; --- Embark: act on things at point / in the minibuffer ---
+(use-package embark
+  :general
+  (general-def :keymaps 'override
+    "C-."   #'embark-act        ; the "right-click menu" of emacs
+    "M-."   #'embark-dwim)      ; do the default thing
+  :config
+  ;; Use which-key-style display for the action list.
+  (setq prefix-help-command #'embark-prefix-help-command))
+
+;; Glue: embark actions on consult candidates (e.g. export grep results).
+(use-package embark-consult
+  :after (embark consult)
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
+
+;; ============================================================
+;; In-buffer completion: corfu + cape + yasnippet
+;; ============================================================
+
+;; --- Corfu: completion popup at point ---
+(use-package corfu
+  :config
+  (setq corfu-auto t
+        corfu-auto-delay 0
+        corfu-auto-prefix 1
+        corfu-cycle t
+        corfu-preselect 'prompt      ; nothing selected until you C-n — like vim's noselect
+        corfu-quit-no-match 'separator)
+  (global-corfu-mode 1)
+
+  ;; Vim-style popup navigation.
+  (define-key corfu-map (kbd "C-n") #'corfu-next)
+  (define-key corfu-map (kbd "C-p") #'corfu-previous)
+  (define-key corfu-map (kbd "C-y") #'corfu-insert)   ; accept selection
+  ;; Take TAB out of the picture entirely — leaves it clean for yasnippet.
+  (define-key corfu-map (kbd "TAB")     nil)
+  (define-key corfu-map (kbd "S-TAB")   nil)
+  (define-key corfu-map (kbd "<backtab>") nil))
+;; Persist popup selection history → better sorting over time.
+(use-package corfu-history
+  :ensure nil                     ; ships inside corfu
+  :after corfu
+  :config
+  (add-to-list 'savehist-additional-variables 'corfu-history)
+  (corfu-history-mode 1))
+
+;; Docs popup next to the candidate (like nvim-cmp's documentation window).
+(use-package corfu-popupinfo
+  :ensure nil                     ; ships inside corfu
+  :after corfu
+  :config
+  (setq corfu-popupinfo-delay '(0.5 . 0.2))  ; (initial . subsequent)
+  (corfu-popupinfo-mode 1))
+
+;; --- Cape: extra completion sources beyond LSP ---
+(use-package cape
+  :init
+  ;; Order matters: earlier functions are tried first.
+  (add-hook 'completion-at-point-functions #'cape-dabbrev) ; words from open buffers
+  (add-hook 'completion-at-point-functions #'cape-file))   ; file paths anywhere
+
+;; --- Yasnippet: snippet engine ---
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+;; The community snippet library (C#, go, java, ts, ...).
+(use-package yasnippet-snippets
+  :after yasnippet)
+
+(provide 'core-completion)
+;;; core-completion.el ends here
+
+

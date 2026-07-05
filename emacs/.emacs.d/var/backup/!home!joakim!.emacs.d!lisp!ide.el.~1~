@@ -1,0 +1,45 @@
+;;; ide.el --- LSP, diagnostics, tree-sitter -*- lexical-binding: t; -*-
+
+;; --- Tree-sitter: prefer -ts-modes, auto-install grammars ---
+(use-package treesit-auto
+  :config
+  (setq treesit-auto-install 'prompt)   ; ask once per missing grammar
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode 1))
+
+;; --- Eglot (built-in) ---
+(use-package eglot
+  :ensure nil
+  :hook ((csharp-ts-mode go-ts-mode zig-mode java-ts-mode
+          tsx-ts-mode typescript-ts-mode)
+         . eglot-ensure)                ; auto-start server per language
+  :config
+  (setq eglot-autoshutdown t            ; kill server with last buffer
+        eglot-events-buffer-config '(:size 0))  ; disable protocol log (perf)
+  :general
+  (my/leader                            ; filling the SPC c placeholder
+    "ca" '(eglot-code-actions :which-key "code actions")
+    "cr" '(eglot-rename :which-key "rename")
+    "cf" '(eglot-format :which-key "format")
+    "ci" '(eglot-find-implementation :which-key "implementations")))
+
+;; --- Flymake: fringe symbols, message on demand ---
+(use-package flymake
+  :ensure nil
+  :config
+  (setq flymake-fringe-indicator-position 'left-fringe)
+  :general
+  (my/leader
+    "cd" '(flymake-show-buffer-diagnostics :which-key "buffer diagnostics")
+    "cD" '(flymake-show-project-diagnostics :which-key "project diagnostics"))
+  (general-def :states 'normal
+    "]d" #'flymake-goto-next-error      ; matches modern nvim defaults
+    "[d" #'flymake-goto-prev-error))
+
+;; Your "C-w d": show diagnostic at point in a posted window.
+;; Eldoc already echoes it; this forces the full message on demand.
+(general-def :states 'normal
+  "C-w d" #'flymake-show-diagnostic-at-point)
+
+(provide 'ide)
+;;; ide.el ends here
