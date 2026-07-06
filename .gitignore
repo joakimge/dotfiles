@@ -1,1 +1,6 @@
-
+# Emacs
+var/
+etc/
+elpaca/
+eln-cache/
+custom.el
