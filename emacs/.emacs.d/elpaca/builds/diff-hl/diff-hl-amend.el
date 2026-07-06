@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/diff-hl/diff-hl-amend.el

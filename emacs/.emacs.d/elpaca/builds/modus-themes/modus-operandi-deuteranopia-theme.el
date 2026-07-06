@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/modus-themes/modus-operandi-deuteranopia-theme.el

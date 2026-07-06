@@ -1,44 +1,34 @@
 /home/joakim/.emacs.d/elpaca/builds/vterm/vterm-module.so: \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o \
   CMakeFiles/vterm-module.dir/vterm-module.c.o \
   CMakeFiles/vterm-module.dir/utf8.c.o \
   CMakeFiles/vterm-module.dir/elisp.c.o \
-  /usr/lib/libvterm.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libgcc_s.so.1 \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic.a \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libc.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libc.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libc.so \
-  /usr/lib/libc.so.6 \
-  /usr/lib/libc_nonshared.a \
-  /usr/lib/ld-linux-x86-64.so.2 \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libgcc_s.so.1 \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtendS.o \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o
+  libvterm-prefix/src/libvterm/.libs/libvterm.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so \
+  /usr/lib/x86_64-linux-gnu/libc.so.6 \
+  /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
+  /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o:
+/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o:
 
 CMakeFiles/vterm-module.dir/vterm-module.c.o:
 
@@ -46,64 +36,44 @@ CMakeFiles/vterm-module.dir/utf8.c.o:
 
 CMakeFiles/vterm-module.dir/elisp.c.o:
 
-/usr/lib/libvterm.so:
+libvterm-prefix/src/libvterm/.libs/libvterm.a:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libgcc_s.so.1:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic_asneeded.so:
+/usr/lib/x86_64-linux-gnu/libc.so.6:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic_asneeded.so:
+/usr/lib/x86_64-linux-gnu/libc_nonshared.a:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic_asneeded.so:
+/lib64/ld-linux-x86-64.so.2:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libatomic.a:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libc.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libc.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libc.so:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
 
-/usr/lib/libc.so.6:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1:
 
-/usr/lib/libc_nonshared.a:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
 
-/usr/lib/ld-linux-x86-64.so.2:
+/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s_asneeded.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc_s.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libgcc_s.so.1:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/crtendS.o:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o:
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o:
