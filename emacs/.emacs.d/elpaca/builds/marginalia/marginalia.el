@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/marginalia/marginalia.el

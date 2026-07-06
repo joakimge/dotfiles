@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/org/lisp/ox-man.el

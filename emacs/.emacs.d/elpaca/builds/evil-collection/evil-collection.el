@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/evil-collection/evil-collection.el

@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/yasnippet/doc/snippet-development.org

@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/corfu/extensions/corfu-popupinfo.el

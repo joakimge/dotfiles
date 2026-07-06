@@ -1,1 +1,0 @@
-/home/joakim/.emacs.d/elpaca/sources/themes/themes/doom-oceanic-next-theme.el
