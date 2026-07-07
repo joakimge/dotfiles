@@ -1,16 +1,11 @@
-
 local opts = { noremap = true, silent = true }
 local set = vim.keymap.set
-
-vim.keymap.set({"n","t"}, "<leader>tt", function()
-  require("config.floaterm").toggle()
-end, { desc = "Toggle floating terminal" })
 
 -- Unmap keys
 set("n", "s", "<Nop>",opts) -- 's' no longer inserts
 
 set("n", "<leader>e", ":Oil<CR>",  opts)
-set('n', '<ESC><ESC>', ':noh<CR>', opts)
+set('n', '<ESC>', ':noh<CR>', opts)
 set('t', '<ESC><ESC>', '<C-\\><C-n>', opts) -- Escape terminal mode insert
 set('i', 'jj', '<ESC><ESC>', opts) -- Escape terminal mode insert
 
@@ -35,6 +30,11 @@ set('n', '<C-d>', '<C-d>zz', opts)
 set("n", "n", "nzzzv", opts)
 set("n", "N", "Nzzzv", opts)
 
+set("n", "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, opts)
+set("n", "gR", "<cmd>Telescope lsp_references<cr>", {noremap = true, silent = true , nowait = true})
+set("n", "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, {noremap = true, silent = true , nowait = true})
+set("n", "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, opts)
+
 -- Disable shift + arrows
 set({'i','n'}, '<S-Up>', '<Nop>', opts)
 set({'i','n'}, '<S-Down>', '<Nop>', opts)
@@ -49,5 +49,3 @@ set('n', '<C-l>', '<C-w>l', opts)
 
 -- Open nvim config
 set('n', '<leader>nc', ':Oil ~/.config/nvim<CR>', opts)
-
-

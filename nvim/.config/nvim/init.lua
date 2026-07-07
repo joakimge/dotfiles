@@ -1,43 +1,24 @@
-require("config.lazy")
-require("config.options")
-require("config.keymaps")
-
--- vim.cmd.colorscheme('nordic')
--- vim.cmd.colorscheme('moonfly')
--- vim.cmd.colorscheme('cyberdream')
-vim.cmd.colorscheme('sonokai')
--- vim.cmd.colorscheme('monokai-pro')
 vim.g.mapleader = " "
+require('config.options')
+require('config.keymaps')
+
+require('plugins.oil')
+require('plugins.lsp')
+require('plugins.theme')
+require('plugins.luasnip')
+require('plugins.telescope')
+require('plugins.blink')
+require('plugins.octo')
+require('plugins.fugitive')
+
 vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.splitright = true
 
-
--- Autocmd to start teesitter
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function(args)
-        -- Get the language for the current buffer's filetype
-        local lang = vim.treesitter.language.get_lang(args.match)
-        -- If no language or no highlight queries are found, return
-        if not lang or not vim.treesitter.query.get(lang, "highlights") then
-            return
-        end
-        -- Enable treesitter for the current buffer
-        vim.treesitter.start()
-    end,
-})
-
--- Autoformat on save
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = true }),
-    callback = function(args)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = args.buf,
-            callback = function()
-                -- Use a synchronous call to ensure formatting completes before saving
-                vim.lsp.buf.format { async = false, id = args.data.client_id }
-            end,
-        })
-    end,
+vim.diagnostic.config({
+  -- only show virtual text for errors, not warnings/hints
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
 })
 
 -- Stop <Tab> from jumping around "randomly"
