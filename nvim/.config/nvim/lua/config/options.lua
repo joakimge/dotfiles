@@ -2,18 +2,18 @@ local set = vim.opt
 
 -- WSL clipboard via xclip carries Windows CRLF line endings, which show up
 -- as ^M in pasted text. Strip \r when reading from the clipboard.
-vim.g.clipboard = {
-    name = "xclip-wsl",
-    copy = {
-        ["+"] = "xclip -selection clipboard",
-        ["*"] = "xclip -selection primary",
-    },
-    paste = {
-        ["+"] = { "sh", "-c", "xclip -selection clipboard -o | sed 's/\\r$//'" },
-        ["*"] = { "sh", "-c", "xclip -selection primary -o | sed 's/\\r$//'" },
-    },
-    cache_enabled = 0,
-}
+-- vim.g.clipboard = {
+--     name = "xclip-wsl",
+--     copy = {
+--         ["+"] = "xclip -selection clipboard",
+--         ["*"] = "xclip -selection primary",
+--     },
+--     paste = {
+--         ["+"] = { "sh", "-c", "xclip -selection clipboard -o | sed 's/\\r$//'" },
+--         ["*"] = { "sh", "-c", "xclip -selection primary -o | sed 's/\\r$//'" },
+--     },
+--     cache_enabled = 0,
+-- }
 
 set.winborder = "single"
 set.number = true

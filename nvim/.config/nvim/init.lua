@@ -8,7 +8,6 @@ require('plugins.theme')
 require('plugins.luasnip')
 require('plugins.telescope')
 require('plugins.blink')
-require('plugins.octo')
 require('plugins.fugitive')
 
 vim.opt.guicursor = "n-v-c-i:block"

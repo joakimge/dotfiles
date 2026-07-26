@@ -47,3 +47,6 @@ vim.lsp.config.lua_ls = {
 for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
         vim.lsp.enable(server)
 end
+
+-- Dartls
+vim.lsp.enable('dartls')
