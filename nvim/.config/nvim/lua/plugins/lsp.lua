@@ -1,12 +1,12 @@
 vim.pack.add({
-    "https://github.com/williamboman/mason.nvim",
+    -- "https://github.com/williamboman/mason.nvim",
     "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/williamboman/mason-lspconfig.nvim",
+    -- "https://github.com/williamboman/mason-lspconfig.nvim",
 })
-require("mason").setup()
-
-require("mason-lspconfig").setup({
-})
+-- require("mason").setup()
+--
+-- require("mason-lspconfig").setup({
+-- })
 
 vim.diagnostic.config({
 virtual_text = true,
@@ -43,10 +43,29 @@ vim.lsp.config.lua_ls = {
     },
 }
 
--- Enable everything Mason installs
-for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
-        vim.lsp.enable(server)
+-- Enable the servers you have installed via Nix (devShell)
+local servers = {
+    "lua_ls",
+    "jdtls",
+    "dartls",
+    "nil_ls",
+    "tinymist",
+    "lemminx",
+    "gopls",
+    "zls",
+    "ts_ls",
+    "cssls",
+    -- add more here, e.g. "nil_ls", "pyright", "rust_analyzer", ...
+}
+
+for _, server in ipairs(servers) do
+    vim.lsp.enable(server)
 end
 
--- Dartls
-vim.lsp.enable('dartls')
+-- -- Enable everything Mason installs
+-- for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
+--         vim.lsp.enable(server)
+-- end
+--
+-- -- Dartls
+-- vim.lsp.enable('dartls')

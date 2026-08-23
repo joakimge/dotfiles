@@ -28,6 +28,13 @@ hl.monitor({
     scale    = "auto",
 })
 
+hl.monitor({
+    output   = "DP-2",
+    mode     = "1920x1080@60",
+    position = "-1920x0",
+    scale    = "1",
+})
+
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -36,7 +43,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "ghostty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local menu        = "wofi --show drun"
 
 
 -------------------
@@ -60,8 +67,11 @@ end)
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 hl.env("XCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME" ,"Bibata-Modern-Classic")
+hl.env("XCURSOR_SIZE" ,"24")
+hl.env("HYPRCURSOR_THEME" ,"Bibata-Modern-Classic")
 hl.env("HYPRCURSOR_SIZE", "24")
-
+hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 24")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -291,7 +301,6 @@ end
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
